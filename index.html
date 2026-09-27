@@ -1,1 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta name="description" content="Horizon RP — Enter a living open world where your decisions shape your story.">
+<meta name="theme-color" content="#050713">
+
+<title>Horizon RP | Official</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050713;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 10%,#284cff55,transparent 30%),
+    radial-gradient(circle at 90% 30%,#a020f055,transparent 30%),
+    radial-gradient(circle at 40% 90%,#00c8ff33,transparent 30%);
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* NAVBAR */
+
+nav{
+  position:fixed;
+  top:12px;
+  left:12px;
+  right:12px;
+  padding:14px 18px;
+  border:1px solid #ffffff25;
+  border-radius:18px;
+  background:#101426cc;
+  backdrop-filter:blur(15px);
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:#61d8ff;
+}
+
+.nav-links{
+  display:flex;
+  gap:8px;
+}
+
+.navbtn{
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+  padding:9px 13px;
+  border-radius:10px;
+  background:#ffffff12;
+  transition:.25s;
+}
+
+.navbtn:hover{
+  background:#5bdcff22;
+  color:#71ddff;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:100px 22px 50px;
+}
+
+.badge{
+  border:1px solid #58d7ff66;
+  background:#58d7ff12;
+  color:#72dcff;
+  padding:8px 14px;
+  border-radius:30px;
+  font-size:12px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:78px;
+  line-height:.9;
+  font-weight:1000;
+  letter-spacing:6px;
+  background:linear-gradient(90deg,#63e5ff,#8c72ff,#ff55d9);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  text-shadow:0 0 35px #526cff55;
+}
+
+.hero h2{
+  margin-top:15px;
+  font-size:20px;
+  letter-spacing:7px;
+  color:#ddd;
+}
+
+.hero p{
+  max-width:560px;
+  margin:22px auto;
+  color:#aeb6d0;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  color:white;
+  padding:14px 22px;
+  border-radius:13px;
+  font-weight:bold;
+  font-size:14px;
+  border:1px solid #ffffff20;
+  background:linear-gradient(135deg,#168fff,#6b55ff);
+  box-shadow:0 0 25px #317dff44;
+  transition:.25s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 35px #317dff66;
+}
+
+.btn.secondary{
+  background:#ffffff0c;
+}
+
+/* SECTIONS */
+
+section{
+  padding:80px 18px;
+  max-width:1050px;
+  margin:auto;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.section-title span{
+  color:#67dfff;
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.section-title h2{
+  margin-top:8px;
+  font-size:31px;
+}
+
+.section-title p{
+  max-width:600px;
+  margin:12px auto 0;
+  color:#8994b0;
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* CARDS */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.card{
+  padding:24px 20px;
+  border:1px solid #ffffff18;
+  border-radius:20px;
+  background:linear-gradient(145deg,#ffffff0d,#ffffff03);
+  backdrop-filter:blur(10px);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#5bdcff66;
+  box-shadow:0 10px 35px #00000033;
+}
+
+.icon{
+  font-size:27px;
+  margin-bottom:12px;
+}
+
+.card h3{
+  font-size:16px;
+  margin-bottom:8px;
+}
+
+.card p{
+  color:#9ca7c3;
+  font-size:12px;
+  line-height:1.6;
+}
+
+/* WORLD */
+
+.world-box{
+  border:1px solid #ffffff18;
+  border-radius:25px;
+  padding:35px 25px;
+  background:
+    linear-gradient(135deg,#16255f55,#51165c33),
+    #ffffff05;
+  text-align:center;
+}
+
+.world-box h3{
+  font-size:25px;
+  margin-bottom:12px;
+}
+
+.world-box p{
+  color:#aeb6d0;
+  max-width:650px;
+  margin:auto;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:28px;
+}
+
+.stat{
+  padding:20px 10px;
+  border:1px solid #ffffff15;
+  border-radius:16px;
+  background:#ffffff08;
+}
+
+.stat strong{
+  display:block;
+  font-size:25px;
+  color:#6bdfff;
+}
+
+.stat span{
+  color:#8994b0;
+  font-size:11px;
+}
+
+/* UPDATES */
+
+.update{
+  border-left:3px solid #5bdcff;
+  padding:18px;
+  margin-bottom:14px;
+  border-radius:0 15px 15px 0;
+  background:#ffffff08;
+  transition:.25s;
+}
+
+.update:hover{
+  background:#ffffff0d;
+}
+
+.update small{
+  color:#6edcff;
+  letter-spacing:1px;
+}
+
+.update h3{
+  margin:7px 0;
+}
+
+.update p{
+  color:#9ca7c3;
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* DISCORD */
+
+.discord{
+  text-align:center;
+  padding:50px 20px;
+  border-radius:25px;
+  border:1px solid #6877ff55;
+  background:linear-gradient(135deg,#2639a533,#9c39ff22);
+}
+
+.discord h2{
+  font-size:29px;
+  margin-bottom:12px;
+}
+
+.discord p{
+  color:#b8c0d7;
+  margin:0 auto 22px;
+  font-size:14px;
+  max-width:600px;
+  line-height:1.6;
+}
+
+/* SUPPORT */
+
+form{
+  max-width:600px;
+  margin:auto;
+}
+
+input,
+textarea{
+  width:100%;
+  margin-bottom:13px;
+  padding:15px;
+  border-radius:13px;
+  border:1px solid #ffffff18;
+  background:#ffffff09;
+  color:white;
+  outline:none;
+  font-size:14px;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#68728d;
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+input:focus,
+textarea:focus{
+  border-color:#5edbff;
+  box-shadow:0 0 15px #5edbff15;
+}
+
+button{
+  width:100%;
+  border:0;
+  padding:15px;
+  border-radius:13px;
+  background:linear-gradient(90deg,#159dff,#784fff);
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 25px #317dff55;
+}
+
+/* SOCIAL */
+
+.socials{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.social{
+  text-decoration:none;
+  color:white;
+  padding:13px 20px;
+  border:1px solid #ffffff18;
+  border-radius:14px;
+  background:#ffffff09;
+  transition:.25s;
+}
+
+.social:hover{
+  border-color:#5bdcff66;
+  transform:translateY(-3px);
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:35px 20px;
+  color:#68728d;
+  font-size:12px;
+  border-top:1px solid #ffffff10;
+}
+
+footer strong{
+  color:#8994b0;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  nav{
+    padding:12px;
+  }
+
+  .logo{
+    font-size:16px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:52px;
+    letter-spacing:4px;
+  }
+
+  .hero h2{
+    font-size:15px;
+    letter-spacing:5px;
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  section{
+    padding:65px 15px;
+  }
+
+  .buttons{
+    flex-direction:column;
+    width:100%;
+    max-width:300px;
+  }
+
+  .btn{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+  <div class="logo">
+    HORIZON RP
+  </div>
+
+  <div class="nav-links">
+    <a href="#features" class="navbtn">FEATURES</a>
+    <a href="#updates" class="navbtn">UPDATES</a>
+    <a href="#support" class="navbtn">SUPPORT</a>
+  </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+  <div class="badge">
+    ● OFFICIAL HORIZON RP
+  </div>
+
+  <h1>HORIZON</h1>
+
+  <h2>ROLEPLAY</h2>
+
+  <p>
+    Enter a living open world where your decisions shape your story.
+    Build your character, explore the world and create your own Horizon.
+  </p>
+
+  <div class="buttons">
+
+    <!-- Replace # with your real download link -->
+    <a href="#" class="btn">
+      DOWNLOAD GAME
+    </a>
+
+    <!-- Replace # with your Discord invite -->
+    <a href="#discord" class="btn secondary">
+      JOIN DISCORD
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- FEATURES -->
+
+<section id="features">
+
+  <div class="section-title">
+
+    <span>THE EXPERIENCE</span>
+
+    <h2>Built For Roleplayers</h2>
+
+    <p>
+      Horizon RP is designed around an open-world roleplay experience
+      where players can create their own stories.
+    </p>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="card">
+
+      <div class="icon">🌎</div>
+
+      <h3>Open World</h3>
+
+      <p>
+        Explore a large living world with cities, roads,
+        organizations, businesses and countless places to discover.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">👤</div>
+
+      <h3>Your Character</h3>
+
+      <p>
+        Create your own identity, develop your character
+        and decide how your story unfolds.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🚔</div>
+
+      <h3>Organizations</h3>
+
+      <p>
+        Join different organizations, follow your career
+        and become an important part of the city.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🏙️</div>
+
+      <h3>Living Cities</h3>
+
+      <p>
+        Discover cities filled with activities, jobs,
+        services and opportunities.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🚗</div>
+
+      <h3>Vehicles</h3>
+
+      <p>
+        Travel across the world and build your vehicle
+        collection as your progress continues.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">💼</div>
+
+      <h3>Economy</h3>
+
+      <p>
+        Work, earn money, purchase properties and build
+        your own path in the Horizon world.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- WORLD -->
+
+<section>
+
+  <div class="section-title">
+
+    <span>THE WORLD</span>
+
+    <h2>Your Story Starts Here</h2>
+
+  </div>
+
+
+  <div class="world-box">
+
+    <h3>One World. Endless Stories.</h3>
+
+    <p>
+      From becoming a respected professional to building
+      your own organization, Horizon RP gives you the freedom
+      to create the experience you want.
+    </p>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong>7</strong>
+        <span>CITIES</span>
+      </div>
+
+      <div class="stat">
+        <strong>∞</strong>
+        <span>POSSIBILITIES</span>
+      </div>
+
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>WORLD</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- UPDATES -->
+
+<section id="updates">
+
+  <div class="section-title">
+
+    <span>NEWS</span>
+
+    <h2>Latest Updates</h2>
+
+  </div>
+
+
+  <div class="update">
+
+    <small>HORIZON RP • DEVELOPMENT</small>
+
+    <h3>Development Has Started</h3>
+
+    <p>
+      Horizon RP is currently being developed with the goal
+      of creating a smooth and enjoyable mobile roleplay experience.
+    </p>
+
+  </div>
+
+
+  <div class="update">
+
+    <small>COMMUNITY</small>
+
+    <h3>Official Community Coming Soon</h3>
+
+    <p>
+      Join the official Discord community to receive
+      announcements, development news and launch information.
+    </p>
+
+  </div>
+
+
+  <div class="update">
+
+    <small>COMING SOON</small>
+
+    <h3>More Information</h3>
+
+    <p>
+      New features, screenshots, gameplay information
+      and launch details will be announced as development continues.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- DISCORD -->
+
+<section id="discord">
+
+  <div class="discord">
+
+    <h2>Join Horizon RP</h2>
+
+    <p>
+      Become part of the Horizon RP community.
+      Get announcements, development updates and
+      connect with other players.
+    </p>
+
+    <!-- Replace # with your Discord invite -->
+
+    <a
+      href="#"
+      class="btn"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      JOIN OFFICIAL DISCORD
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- SUPPORT -->
+
+<section id="support">
+
+  <div class="section-title">
+
+    <span>CONTACT</span>
+
+    <h2>Horizon Support</h2>
+
+    <p>
+      Have a question or found an issue?
+      Send us a message.
+    </p>
+
+  </div>
+
+
+  <form
+    onsubmit="sendSupport(event)"
+  >
+
+    <input
+      type="text"
+      id="name"
+      placeholder="Your name"
+      required
+    >
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Your email"
+      required
+    >
+
+    <textarea
+      id="message"
+      placeholder="Describe your question or issue..."
+      required
+    ></textarea>
+
+    <button type="submit">
+      SEND SUPPORT REQUEST
+    </button>
+
+  </form>
+
+</section>
+
+
+<!-- SOCIAL -->
+
+<section>
+
+  <div class="section-title">
+
+    <span>FOLLOW US</span>
+
+    <h2>Stay Connected</h2>
+
+  </div>
+
+
+  <div class="socials">
+
+    <!-- Replace # with your real links -->
+
+    <a
+      href="#"
+      class="social"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Discord
+    </a>
+
+    <a
+      href="#"
+      class="social"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      YouTube
+    </a>
+
+    <a
+      href="#"
+      class="social"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Instagram
+    </a>
+
+    <a
+      href="#"
+      class="social"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Telegram
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <p>
+    © <span id="year"></span>
+    <strong>Horizon RP</strong>.
+    All rights reserved.
+  </p>
+
+  <p style="margin-top:8px;">
+    Official Horizon RP Website
+  </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* Automatic year */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+
+/* Support form */
+
+function sendSupport(event){
+
+  event.preventDefault();
+
+  const name =
+    document.getElementById("name").value;
+
+  alert(
+    "Thank you, " +
+    name +
+    "! Your support request has been received."
+  );
+
+  event.target.reset();
+}
+
+
+/* Smooth navigation */
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+  link.addEventListener("click", function(event){
+
+    const target =
+      document.querySelector(this.getAttribute("href"));
+
+    if(target){
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior:"smooth"
+      });
+
+    }
+
+  });
+
+});
+
+</script>
+
+</body>
+  </html>
